@@ -1,0 +1,5 @@
+Add new column in Ohrm_attendance_record Table as verify.
+the default value of verify = 1 when attendance insert or verified by admin or super admin,
+user inserted attendance verify value = 0.  
+
+change the format type of punch-in-time and punch-out-time as time...

@@ -1,0 +1,44 @@
+<IfModule mod_rewrite.c>
+   Options +FollowSymlinks
+	RewriteEngine On
+	
+	RewriteRule frontend/views/complaint-report/results/.*$ - [PT]
+	
+	
+	# deal with admin first
+	RewriteCond %{REQUEST_URI} ^/(admin) 
+	RewriteRule ^admin/assets/(.*)$ backend/web/assets/$1 [L]
+	RewriteRule ^admin/css/(.*)$ backend/web/css/$1 [L]
+	RewriteRule ^admin/js/(.*)$ backend/web/js/$1 [L]
+	RewriteRule ^admin/images/(.*)$ backend/web/images/$1 [L]
+
+	RewriteCond %{REQUEST_URI} !^/backend/web/(assets|css)/  
+	RewriteCond %{REQUEST_URI} ^/(admin)  
+	RewriteRule ^.*$ backend/web/index.php [L]
+
+
+	RewriteCond %{REQUEST_URI} ^/(assets|css|js|images|fonts)  
+	RewriteRule ^assets/$ frontend/web/assets/ [L]
+	RewriteRule ^assets/(.*) frontend/web/assets/$1 [L]
+	
+	# handling User Pgoto Folder 
+	RewriteRule ^user_folders/(.*)$ user_folders/$1 [L]
+	
+	# handling User Pgoto Folder 
+	RewriteRule ^complaint-report/results/(.*)$ frontend/views/complaint-report/results/$1 [L]
+	
+	
+	RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
+	RewriteRule ^js/(.*)$ frontend/web/js/$1 [L]
+	RewriteRule ^images/(.*)$ frontend/web/images/$1 [L]
+	RewriteRule ^uploads/(.*)$ frontend/web/uploads/$1 [L]
+	RewriteRule ^documents/(.*)$ frontend/web/documents/$1 [L]
+	RewriteRule ^fonts/(.*)$ frontend/web/fonts/$1 [L]
+	RewriteRule ^cron/(.*)$ frontend/web/cron/$1 [L]
+        
+	RewriteCond %{REQUEST_URI} !^/(frontend|backend)/web/(assets|css|js|images|fonts)/  
+	RewriteCond %{REQUEST_URI} !index.php
+	RewriteCond %{REQUEST_FILENAME} !-f [OR]
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^.*$ frontend/web/index.php
+</IfModule>

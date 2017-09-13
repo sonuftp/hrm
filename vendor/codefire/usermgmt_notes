@@ -1,0 +1,10 @@
+Usermgmt Important notes which every one need to remember who are using Usermgmt plugin
+
+Need to set two redirect uris for google login
+http://labs.codefiretechnologies.com/usemgmtplugin/usermgmt/user/register?usingApis=Google
+http://labs.codefiretechnologies.com/usemgmtplugin/usermgmt/user/login?apiLogin=Google
+
+
+Twitter login need callback url 
+So I made the same in User controller "actionTwitterCallBack".
+So need to give that During developing of API key and secret on twitter
